@@ -1,0 +1,102 @@
+# Copyright 2020 The Pigweed Authors
+#
+# Licensed under the Apache License, Version 2.0 (the "License"); you may not
+# use this file except in compliance with the License. You may obtain a copy of
+# the License at
+#
+#     https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+# WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+# License for the specific language governing permissions and limitations under
+# the License.
+
+import("$dir_pw_docgen/docs.gni")
+import("$dir_pw_unit_test/test.gni")
+
+config("default_config") {
+  include_dirs = [
+    "public",
+    "posix",
+  ]
+  libs = [
+    "pthread",
+    "rt",
+  ]
+}
+
+source_set("pw_osal") {
+  public_configs = [ ":default_config" ]
+  public_deps = [ dir_pw_status ]
+  sources = [
+    "posix/RingPthread.h",
+    "posix/os_mutex.c",
+    "posix/os_queue.cc",
+    "posix/os_sem.c",
+    "posix/os_task.c",
+    "posix/os_time.c",
+    "posix/os_timer.c",
+    "posix/os_utils.c",
+    "posix/pw_osal_backend/os_port.h",
+    "posix/pw_osal_backend/os_time.h",
+    "posix/pw_osal_backend/os_types.h",
+  ]
+  public = [
+    "public/Ring.h",
+    "public/pw_osal/mutex.h",
+    "public/pw_osal/osal.h",
+    "public/pw_osal/queue.h",
+    "public/pw_osal/sem.h",
+    "public/pw_osal/task.h",
+    "public/pw_osal/time.h",
+    "public/pw_osal/timer.h",
+  ]
+  deps = []
+}
+
+pw_test_group("tests") {
+  tests = [
+    ":test_os_mutex",
+    ":test_os_queue",
+    ":test_os_sem",
+    ":test_os_task",
+    ":test_os_timer",
+    ":test_ring",
+  ]
+}
+
+pw_test("test_os_mutex") {
+  sources = [ "tests/test_os_mutex.cc" ]
+  deps = [ ":pw_osal" ]
+}
+
+pw_test("test_os_sem") {
+  sources = [ "tests/test_os_sem.cc" ]
+  deps = [ ":pw_osal" ]
+}
+
+pw_test("test_os_queue") {
+  sources = [ "tests/test_os_queue.cc" ]
+  deps = [ ":pw_osal" ]
+}
+
+pw_test("test_os_task") {
+  sources = [ "tests/test_os_task.cc" ]
+  deps = [ ":pw_osal" ]
+}
+
+pw_test("test_os_timer") {
+  sources = [ "tests/test_os_timer.cc" ]
+  deps = [ ":pw_osal" ]
+}
+
+pw_test("test_ring") {
+  sources = [ "tests/test_ring.cc" ]
+  deps = [ ":pw_osal" ]
+}
+
+#pw_doc_group("docs") {
+#  sources = [ "docs.rst" ]
+#}
+

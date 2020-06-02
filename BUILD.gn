@@ -54,6 +54,7 @@ group("pw_modules") {
     "$dir_pw_allocator",
     "$dir_pw_base64",
     "$dir_pw_checksum",
+    "$dir_pw_osal",
     "$dir_pw_polyfill",
     "$dir_pw_preprocessor",
     "$dir_pw_protobuf",
