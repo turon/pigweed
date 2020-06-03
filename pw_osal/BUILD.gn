@@ -38,6 +38,7 @@ source_set("pw_osal") {
     "posix/os_time.c",
     "posix/os_timer.c",
     "posix/os_utils.c",
+    "posix/os_utils.h",
     "posix/pw_osal_backend/os_port.h",
     "posix/pw_osal_backend/os_time.h",
     "posix/pw_osal_backend/os_types.h",
@@ -67,32 +68,50 @@ pw_test_group("tests") {
 }
 
 pw_test("test_os_mutex") {
-  sources = [ "tests/test_os_mutex.cc" ]
+  sources = [
+    "tests/test_os_mutex.cc",
+    "tests/test_util.h",
+  ]
   deps = [ ":pw_osal" ]
 }
 
 pw_test("test_os_sem") {
-  sources = [ "tests/test_os_sem.cc" ]
+  sources = [
+    "tests/test_os_sem.cc",
+    "tests/test_util.h",
+  ]
   deps = [ ":pw_osal" ]
 }
 
 pw_test("test_os_queue") {
-  sources = [ "tests/test_os_queue.cc" ]
+  sources = [
+    "tests/test_os_queue.cc",
+    "tests/test_util.h",
+  ]
   deps = [ ":pw_osal" ]
 }
 
 pw_test("test_os_task") {
-  sources = [ "tests/test_os_task.cc" ]
+  sources = [
+    "tests/test_os_task.cc",
+    "tests/test_util.h",
+  ]
   deps = [ ":pw_osal" ]
 }
 
 pw_test("test_os_timer") {
-  sources = [ "tests/test_os_timer.cc" ]
+  sources = [
+    "tests/test_os_timer.cc",
+    "tests/test_util.h",
+  ]
   deps = [ ":pw_osal" ]
 }
 
 pw_test("test_ring") {
-  sources = [ "tests/test_ring.cc" ]
+  sources = [
+    "tests/test_ring.cc",
+    "tests/test_util.h",
+  ]
   deps = [ ":pw_osal" ]
 }
 

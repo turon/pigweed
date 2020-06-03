@@ -32,6 +32,7 @@ pw_cc_library(
         "posix/os_time.c",
         "posix/os_timer.c",
         "posix/os_utils.c",
+        "posix/os_utils.h",
         "posix/RingPthread.h",
         "posix/pw_osal_backend/os_port.h",
         "posix/pw_osal_backend/os_time.h",
